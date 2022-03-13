@@ -1,0 +1,14 @@
+.myBtn{
+    padding: 10px 55px;
+    color: #FFFFFF;
+    background-color: #3F72AF;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid;
+    font-size: 20px;
+}
+.myBtn.mySecondaryBtn{
+    background-color: #E5E5E5;
+    color: #3F72AF;
+    border: 2px solid #3F72AF;
+}

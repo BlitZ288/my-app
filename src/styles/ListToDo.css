@@ -1,0 +1,59 @@
+.continerItem
+{
+    padding-top: 8px;
+    max-width: 1000px;   
+    margin: auto;
+}
+.itemTodo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #3F72AF;
+}
+
+.infoItem{
+    font-size: 18px;
+    padding: 0px 16px 4px 16px;
+
+}
+.headerItem{
+    display: flex;
+    align-items: center;
+}
+.name{
+    color:#000000 ;
+    line-height: 20px;  
+    font-weight: 500;
+    padding-right: 16px;
+}
+.additionalInfo{
+    color: #3F72AF;
+    line-height: 24px;    
+
+}
+.description{
+    color: #808080;
+    line-height: 20px;
+    
+}
+
+.containerButton{
+    display: flex;    
+    align-items: center;
+    justify-content: space-evenly;
+    padding-right: 20px;
+}
+
+.editItem{
+    /*background-image: url('../img/edit.svg');*/
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    margin-right: 16px ;
+}
+.deleteItem{
+    /*background-image: url('../img/delete.svg');*/
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+}

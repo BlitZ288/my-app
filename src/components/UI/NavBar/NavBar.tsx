@@ -1,28 +1,33 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+import { ListContext } from '../../../Context';
 import   '../../../styles/navBar.css';
-import TaskForm from '../../Tasks/TaskForm';
+import TaskFormAdd from '../../Tasks/TaskFormAdd';
 import MyModel from '../Model/MyModel';
 import styleLink from './NavBar.module.css';
-import NavLink from './NavLink';
 
 const NavBar = () => {
 
  const location = useLocation();
  const [modal , setModal] = useState(false);
- const [tasks, setTasks]=useState<ITask[]>([]);
+ const {tasks, setTasks} =useContext(ListContext);
  
  const createTask = (newTask : ITask)=>{
     setTasks([...tasks, newTask]);
     setModal(false);
   }
 
- 
   return (
     <div className="containerHeader">
          <div className='leftNavcontainer'>
             <label className="logoName">ToDo List</label>
-            <NavLink pathname={location.pathname} />
+
+            <nav className="continerButtonHeader"> 
+                <NavLink to={'Tasks'} className={({isActive}) => isActive ? styleLink.buttonNavActive : styleLink.buttonNav}> Задачи</NavLink>
+                <span className="separator">|</span>
+                <NavLink to={'Category'} className={({isActive}) => isActive ? styleLink.buttonNavActive : styleLink.buttonNav}>Категории </NavLink>
+            </nav>
+
          </div>
             <div onClick={()=>setModal(true)} className={styleLink.buttonNav}>
                     {
@@ -33,12 +38,12 @@ const NavBar = () => {
                         <span>Добавить категорию</span> 
                     }
             </div>
-            <MyModel visible={modal} setVisable={setModal}>
+            <MyModel visible={modal} setVisable={setModal} title={'adas'}>
                 {
                    
                         location.pathname ==='/Tasks' 
                         ?
-                        <TaskForm create={createTask} lastId={tasks.length-1}  > </TaskForm> 
+                        <TaskFormAdd create={createTask} lastId={tasks.length}> </TaskFormAdd> 
                         :
                         <span>Добавить категорию</span> 
                     

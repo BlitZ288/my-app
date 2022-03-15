@@ -13,7 +13,31 @@
     font-size: 20px;
     padding-left: 10px;
     width: 100%;
-    padding: 0;
+    padding: 5px 0px;
+}
+
+.mySelect{
+  border: none;
+  outline: none;
+  appearance: none;
+  padding: 5px 0px;
+  font-size: 20px;  
+  background: transparent;
+  color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  padding-right: 0px;
+}
+select:not([multiple]){
+  padding-right: 1.2em;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.25em);
+  background-size: 0.85em auto;
+  background-image: url('../../img/drop-down-arrow.svg');
+}
+
+.defaultValue {
+  color: #000000  50%;
+
 }
  
 .legendInput{

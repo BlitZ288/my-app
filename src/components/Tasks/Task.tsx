@@ -1,48 +1,31 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import TaskService from '../../API/TaskServise';
-import MyButtonPrimary from '../UI/button/MyButtonPrimary';
-import MyModel from '../UI/Model/MyModel';
-import TaskForm from './TaskForm';
 import TaskList from './TaskList';
 import '../../styles/App.css'
+import { ListContext } from '../../Context';
 
 function Task() {
-  const [modal , setModal] = useState(false);
-  const [tasks, setTasks]=useState<ITask[]>([]);
-  const [isLoadingData, setIsLoading] = useState(true)
+  const {tasks, setTasks} = useContext(ListContext);
+  const [isLoadingData, setIsLoading] = useState(true);
+
   const removeTask = (idTask : number)=>{ 
     setTasks(tasks.filter(t=>t.id !== idTask));
+    TaskService.RemoveTask(idTask);
   }
-  const createTask = (newTask : ITask)=>{
-    setTasks([...tasks, newTask]);
-    setModal(false);
-  }
-
-
-  async function GetTask() {
+  async function GetTasks() {
     const tasks = await TaskService.GetAllTasks();
     setTasks(tasks)
   }
   
   useEffect(()=>{
     setIsLoading(true); 
-    console.log("sadas"); 
-    GetTask();
+    GetTasks();
     setIsLoading(false);
   },[])
   
 
   return (
-    <div className="App">  
-      
-       <MyButtonPrimary  onClick={()=>setModal(true)}>
-          Создать задачу 
-        </MyButtonPrimary>
-      <MyModel visible={modal} setVisable={setModal}>       
-
-       <TaskForm  create={createTask} lastId={tasks.length-1} />
-
-      </MyModel>
+    <div className="App">        
       {
         isLoadingData
         ?<h1>Идет загрузка</h1>

@@ -7,6 +7,11 @@
     border: 1px solid;
     font-size: 20px;
 }
+.myBtnClose{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
 .myBtn.mySecondaryBtn{
     background-color: #E5E5E5;
     color: #3F72AF;

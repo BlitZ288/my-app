@@ -1,5 +1,8 @@
 import React from 'react';
+import MyButtonImge from '../UI/button/MyButtonImge';
 import MyButtonSecondary from '../UI/button/MyButtonSecondary';
+import editIamge from '../img/edit.svg';
+import deleteImage from '../img/delete.svg';
 
 const TaskItem = (TaskItem:ITask) => {    
     return (
@@ -18,12 +21,13 @@ const TaskItem = (TaskItem:ITask) => {
                         </div>
                     </div>
                     <div className='containerButton'>
-                            <MyButtonSecondary onClick={()=>TaskItem.remove(TaskItem.id)} >
-                             Открыть
-                            </MyButtonSecondary>
-                            <MyButtonSecondary onClick={()=>TaskItem.remove(TaskItem.id)} >
-                             Удалить
-                            </MyButtonSecondary>
+                        <MyButtonImge onClick={()=>{}}>
+                             <img src={editIamge} alt='edit'></img>
+                        </MyButtonImge>
+                        <MyButtonImge onClick={()=>TaskItem.remove(TaskItem.id)}>
+                             <img src={deleteImage} alt='edit'></img>
+                        </MyButtonImge>
+                            
                     </div>
         
                 </div>

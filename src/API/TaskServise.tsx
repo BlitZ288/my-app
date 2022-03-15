@@ -14,13 +14,17 @@ export default class TaskService {
      }
      static async AddTask(task:ITask)
      {
-         await axios.post(`http://localhost:8089/api/ToDoList/AddTask`,{task});
+         await axios.post(`http://localhost:8089/api/ToDoList/AddTask`,{...task},{
+          headers:{
+            'Content-Type': 'application/json'
+          }
+         });
       
 
      }
      static async UpdateTask(task:ITask)
      {
-         await axios.post(`http://localhost:8089/api/ToDoList/UpdateTask`,{task});
+         await axios.post(`http://localhost:8089/api/ToDoList/UpdateTask`,{...task});
      }
     
    

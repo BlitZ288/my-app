@@ -1,0 +1,21 @@
+.from__addTask{
+
+}
+.title__form{
+    font-size: 40px;
+    line-height: 56px;
+    color: #3F72AF;
+
+}
+.close__modal{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.header__form{
+    display: flex;
+    justify-content: space-evenly;
+}
+.content__form{
+
+}

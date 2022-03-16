@@ -1,6 +1,3 @@
-.from__addTask{
-
-}
 .title__form{
     font-size: 40px;
     line-height: 56px;
@@ -12,10 +9,7 @@
     background: none;
     cursor: pointer;
 }
-.header__form{
+.header__modul{
     display: flex;
     justify-content: space-evenly;
-}
-.content__form{
-
 }

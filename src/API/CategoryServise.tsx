@@ -15,11 +15,15 @@ export default class CategoryServise
     }
     static async AddCategory(category:ICategory)
     {
-        await axios.post(`http://localhost:8089/api/ToDoList/AddCategory`,{category});  
+        await axios.post(`http://localhost:8089/api/ToDoList/AddCategory`,{...category},{
+            headers:{
+              'Content-Type': 'application/json'
+            }
+        });  
     }
     static async UpdateCategory(category:ICategory)
     {
-        await axios.post(`http://localhost:8089/api/ToDoList/UpdateCategory`,{category});
+        await axios.post(`http://localhost:8089/api/ToDoList/UpdateCategory`,{...category});
     }
 }
 

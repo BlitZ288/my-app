@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { ListContext } from '../../../Context';
 import   '../../../styles/navBar.css';
+import CategoryFormAdd from '../../Category/CategoryFormAdd';
 import TaskFormAdd from '../../Tasks/TaskFormAdd';
 import MyModel from '../Model/MyModel';
 import styleLink from './NavBar.module.css';
@@ -10,12 +11,19 @@ const NavBar = () => {
 
  const location = useLocation();
  const [modal , setModal] = useState(false);
- const {tasks, setTasks} =useContext(ListContext);
+ const {tasks,categories, setTasks,setCategories} = useContext(ListContext);
  
  const createTask = (newTask : ITask)=>{
-    setTasks([...tasks, newTask]);
+
+    setTasks([...tasks, newTask]);    
     setModal(false);
   }
+  const createCategory = (newCategory : ICategory)=>{
+
+    setCategories([...categories, newCategory]);    
+    setModal(false);
+  }
+
 
   return (
     <div className="containerHeader">
@@ -43,9 +51,9 @@ const NavBar = () => {
                    
                         location.pathname ==='/Tasks' 
                         ?
-                        <TaskFormAdd create={createTask} lastId={tasks.length}> </TaskFormAdd> 
+                        <TaskFormAdd close={setModal} createTask={createTask} lastId={tasks[tasks.length-1].id}> </TaskFormAdd> 
                         :
-                        <span>Добавить категорию</span> 
+                        <CategoryFormAdd close={setModal} createCategory={createCategory}  lastId={categories[categories.length-1].id}>Добавить категорию</CategoryFormAdd> 
                     
                 }
             </MyModel> 

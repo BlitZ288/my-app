@@ -11,18 +11,12 @@ import closeImg from '../../img/close.svg';
   return (
     <div className={rootClass.join(' ')} onClick={()=>setVisable(false)}>
         <div className={styleModel.myModelContent} onClick={e => e.stopPropagation()}>
-          <div className='header__form'>
-            <h2 className='title__form'>Создать Задачи</h2>
+          <div className={styleModel.header__modul}>            
             <MyButtonImge onClick={()=>setVisable(false)}><img src={closeImg} alt='close'></img></MyButtonImge>         
           </div>
           {children}
         </div>
-            
-         
-
     </div>
-
-   
   )
 }
 

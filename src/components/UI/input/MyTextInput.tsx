@@ -1,11 +1,10 @@
+import TemplateInput from "./MyInput";
 import classes from "./MyInput.module.css"
 const MyTextInput = ({labelInput,...props}:IMyTextIntput) =>{
     return(
-        <fieldset className={classes.fieldsetInput}> 
-            <legend className={classes.legendInput}>{labelInput}<span className={classes.req}>*</span></legend> 
+        <TemplateInput className={props.className} labelInput={labelInput} required={props.required}>
             <input {...props} className={classes.myInput} type="text" placeholder="Введите имя задачи" required />
-        </fieldset>
+        </TemplateInput>
     )
-
 }
 export default MyTextInput;

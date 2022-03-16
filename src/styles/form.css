@@ -1,17 +1,43 @@
-.from__addTask{
-
+.from__templete{
+    padding: 0px;
+}
+.conteiner__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-top: 24px;
+}
+.conteiner__button button:first-child {
+    margin-right: 24px;
 }
 .title__form{
     font-size: 40px;
     line-height: 56px;
     color: #3F72AF;
+    margin: 0px;
+    
 
 }
-
+.input__AddCategory{
+    margin-bottom: 20px;
+}
+.conteiner__first__row input{
+    padding-right: 20px;
+}
 .header__form{
     display: flex;
-    justify-content: space-evenly;
+    
 }
-.content__form{
-
+.description__input{
+    min-height: 72px;
+    max-width: 752px;
+}
+.content__add{
+    display: flex;
+    flex-direction: column;
+}
+.conteiner__first__row{
+    display: flex;
+    padding-bottom: 24px;
+    justify-content: space-between;
 }

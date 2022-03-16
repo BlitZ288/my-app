@@ -4,8 +4,12 @@ interface IListContext
 {   
     tasks: Array<ITask>;
     setTasks: Dispatch<SetStateAction<ITask[]>>; 
+    isLoadingTask : boolean;
+    setIsLoadingTask:Dispatch<SetStateAction<boolean>>;
     categories: Array<ICategory>;
-    setCategories: Dispatch<SetStateAction<ICategory[]>>;   
+    setCategories: Dispatch<SetStateAction<ICategory[]>>;  
+    isLoadingCategories:boolean; 
+    setisLoadingCategories:Dispatch<SetStateAction<boolean>>
 }
 
 

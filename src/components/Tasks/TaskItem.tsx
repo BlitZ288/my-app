@@ -1,10 +1,10 @@
 import React from 'react';
 import MyButtonImge from '../UI/button/MyButtonImge';
-import MyButtonSecondary from '../UI/button/MyButtonSecondary';
 import editIamge from '../img/edit.svg';
 import deleteImage from '../img/delete.svg';
-
-const TaskItem = (TaskItem:ITask) => {    
+import iconFolder from '../img/folder.svg';
+const TaskItem = (TaskItem:ITask) => {   
+   // console.log(TaskItem); 
     return (
       <div>     
         <div className='continerItem'>
@@ -12,8 +12,9 @@ const TaskItem = (TaskItem:ITask) => {
                     <div className='infoItem'>
                         <div className='headerItem'>
                             <label className='name'>{TaskItem.name}</label>
-                            <div className='additionalInfo'>
-                                <label className='nameAdditionl'>{TaskItem.categoryId}</label>
+                            <div className='additionalInfo'>                                
+                                <img className='additionalInfo__img' alt='folder' src={iconFolder}></img>
+                                <label className='nameAdditionl'>{TaskItem.categoryName}</label>
                             </div>
                         </div>
                         <div className='description'>

@@ -4,6 +4,8 @@
     text-align: end;
     border-radius: 4px;  
     padding: 0px 8px;
+    min-width: 360px;
+  
   }
 .myInput{
     width: 500px;   
@@ -15,45 +17,105 @@
     width: 100%;
     padding: 5px 0px;
 }
-
-.mySelect{
-  border: none;
-  outline: none;
-  appearance: none;
-  padding: 5px 0px;
-  font-size: 20px;  
-  background: transparent;
-  color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  padding-right: 0px;
-}
-select:not([multiple]){
-  padding-right: 1.2em;
-  background-repeat: no-repeat;
-  background-position: calc(100% - 0.25em);
-  background-size: 0.85em auto;
-  background-image: url('../../img/drop-down-arrow.svg');
-}
-
-.defaultValue {
-  color: #000000  50%;
-
-}
- 
 .legendInput{
-    font-size: 18px;
-    line-height: 20px;
-    color: #3F72AF;    
+  font-size: 18px;
+  line-height: 20px;
+  color: #3F72AF;    
+}
+.req{
+    color:#EC1D1D ;
+}
+@keyframes rotate-scale-up {
+  0% {
+    transform: scale(1) rotateZ(0);
   }
-  .req{
-      color:#EC1D1D ;
+  50% {
+    transform: scale(2) rotateZ(40deg);
   }
-  
+  100% {
+    transform: scale(1) rotateZ(180deg);
+  }
+}
+
+.rotate_scale_up {
+	animation: rotate-scale-up 0.65s linear both;
+}
 .legendInput:after{
-    content:"";
-    width:20px;
-    height:1px;
-    background:#000;
-    position:absolute;
-    top:6px; left:-2px;
-  }
+  content:"";
+  width:20px;
+  height:1px;
+  background:#000;
+  position:absolute;
+  top:6px; left:-2px;
+}
+
+.select{
+  width: 100%;
+  position: relative;
+}
+.select__header{
+  
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+ 
+}
+.select__current{
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 24px;
+  padding: 8px 0;
+}
+
+.select__icon{
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  text-align: center;
+  height: 40px;
+  width: 40px;
+
+}
+.is_active .select__body{
+  display: block;
+}
+.select__body{
+  text-align: start;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  border: 2px solid #257FEA;
+  margin-top: 6px;
+  background-color: #DBE2EF;
+  max-height: 200px;
+  overflow-y: scroll;
+  display:  none;
+}
+.select__item{
+  line-height:46px;
+  padding: 8px;
+  font-size: 20px;
+  color: #000000;
+  cursor: pointer;
+}
+.select__item:hover{
+  background-color:  rgba(37, 127, 234, 0.3);
+}
+.select__item:active{
+  background-color:  #3F72AF;
+}
+.description__textarea{
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #000000;
+    line-height: 46px;
+    min-width: 752px;
+}
+.description__textarea:focus-visible{
+  outline: none;
+}
+

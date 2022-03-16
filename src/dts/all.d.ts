@@ -1,5 +1,5 @@
 interface IMyButtonSecondary{
-    onClick : React.MouseEventHandler<HTMLButtonElement>;
+    onClick? : React.MouseEventHandler<HTMLButtonElement>;
     children: React.ReactNode;
 } 
 interface IMyButtonPrimary{
@@ -13,16 +13,25 @@ interface IMyModel{
     setVisable:React.Dispatch<React.SetStateAction<boolean>>;
 
 }
+interface IMyInput extends React.HTMLProps<Input>{
+    labelInput:string;
+
+}
 interface IMyTextIntput extends React.HTMLProps<Input>{
    labelInput:string;
 }
-interface ITaskForm{
-    create:(newPost: ITask) => void;
+interface ICreateForm{
+    createTask?:(newTask: ITask) => void;
+    createCategory?:(newCategoryt: ICategory) => void;
     lastId:number;
+    close:React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface IMyForm extends React.HTMLProps<Form>{
-    title:string;
+    titleForm:string;
     children: React.ReactNode;
+    titlePrimaryButton:string;
+    titleSecondaryButton:string;
+    move:(DOMAttributes<Form>);
     close:React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface IMySelect extends React.HTMLProps<Select> {
@@ -31,6 +40,7 @@ interface IMySelect extends React.HTMLProps<Select> {
     defaultValue: string;
     labelSelect:string;
     onChange:(idCategory:number)=>void;
+    setNameCategory:(nameCategory:string)=>void;
     value: number;
 }
 
@@ -52,6 +62,7 @@ interface ITask{
     name:string;
     description:string;
     categoryId?:number;
+    categoryName:string;
     remove :(idTask:number)=>void;
 }
 interface ICategory{

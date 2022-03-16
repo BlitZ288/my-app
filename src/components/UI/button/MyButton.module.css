@@ -7,13 +7,27 @@
     border: 1px solid;
     font-size: 20px;
 }
+.myBtn:hover{
+    background-color: #257FEA;
+}
+.myBtn:active{
+    background-color: #65ABFF;
+}
 .myBtnClose{
     border: none;
     background: none;
     cursor: pointer;
 }
 .myBtn.mySecondaryBtn{
-    background-color: #E5E5E5;
+    background: none;
     color: #3F72AF;
     border: 2px solid #3F72AF;
 }
+.mySecondaryBtn:hover{
+   background-color: rgba(37, 127, 234, 0.2);
+   color: #257FEA;
+}
+.mySecondaryBtn:active{
+    background-color: #257FEA ;
+    color: #FFFFFF;
+ }

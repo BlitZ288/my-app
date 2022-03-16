@@ -7,8 +7,11 @@
     display: none;
     background: rgb(0, 0, 0,0.4);
 }
+.header__modul{
+    text-align: end;
+}
 .myModelContent{
-    padding: 25px;
+    padding: 24px;
     background-color: #DBE2EF;
     border-radius: 16px;
     min-width: 250px;

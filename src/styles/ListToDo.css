@@ -13,23 +13,26 @@
 .infoItem{
     font-size: 18px;
     padding: 8px 16px 8px 16px;
+    text-align: initial;
 }
 .headerItem{
     display: flex;
     align-items: center;
+    padding-bottom: 4px;
+}
+label.nameAdditionl {
+    padding-left: 4px;
 }
 .name{
     color:#000000 ;
     line-height: 20px;  
     font-weight: bold;
-    padding-right: 16px;
-    padding-bottom: 4px;
-    
+    padding-right: 16px;    
 }
 .additionalInfo{
     color: #3F72AF;
     line-height: 24px;    
-
+    display: flex;
 }
 .description{
     color: #808080;
@@ -42,18 +45,16 @@
     display: flex;    
     align-items: center;
     justify-content: space-evenly;
-    padding-right: 20px;
+    
 }
 
 .editItem{
-    /*background-image: url('../img/edit.svg');*/
     width: 25px;
     height: 25px;
     background-repeat: no-repeat;
     margin-right: 16px ;
 }
 .deleteItem{
-    /*background-image: url('../img/delete.svg');*/
     width: 25px;
     height: 25px;
     background-repeat: no-repeat;

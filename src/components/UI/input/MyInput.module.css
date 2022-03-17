@@ -8,12 +8,10 @@
   
   }
 .myInput{
-    width: 500px;   
     background: none;
     border: none;
     outline: none;
-    font-size: 20px;
-    padding-left: 10px;
+    font-size: 20px;    
     width: 100%;
     padding: 5px 0px;
 }
@@ -42,8 +40,7 @@
 }
 .legendInput:after{
   content:"";
-  width:20px;
-  height:1px;
+  width:20px;  
   background:#000;
   position:absolute;
   top:6px; left:-2px;
@@ -62,9 +59,12 @@
 }
 .select__current{
   font-size: 20px;
-  color: rgba(0, 0, 0, 0.5);
   line-height: 24px;
+  color: rgba(0, 0, 0, 0.5);
   padding: 8px 0;
+}
+.select__current_isActive{ 
+  color: #000; 
 }
 
 .select__icon{
@@ -83,15 +83,17 @@
 .select__body{
   text-align: start;
   position: absolute;
-  left: 0;
+  left: -10px;
   right: 0;
   top: 100%;
   border: 2px solid #257FEA;
+  border-radius: 4px;
   margin-top: 6px;
   background-color: #DBE2EF;
   max-height: 200px;
   overflow-y: scroll;
-  display:  none;
+  display:  none;  
+  min-width: 360px;
 }
 .select__item{
   line-height:46px;

@@ -37,11 +37,13 @@ function App() {
     const categories = await CategoryServise.GetAllCategores();
     setCategories(categories);    
   }
-  
+ 
   
   return(
       (isLoadingCategories===false && isLoadingTasks ===false) 
       ?
+      
+
       <ListContext.Provider value={
         {
           tasks:tasks, 

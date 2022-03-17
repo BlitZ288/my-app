@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import CategoryServise from '../../../API/CategoryServise';
+import TaskService from '../../../API/TaskServise';
 import { ListContext } from '../../../Context';
 import   '../../../styles/navBar.css';
 import CategoryFormAdd from '../../Category/CategoryFormAdd';
@@ -12,15 +14,23 @@ const NavBar = () => {
  const location = useLocation();
  const [modal , setModal] = useState(false);
  const {tasks,categories, setTasks,setCategories} = useContext(ListContext);
- 
+
+ async function AddTask(task: ITask) {     
+  await TaskService.AddTask(task);
+}
+async function AddCategory(category: ICategory) {     
+  await CategoryServise.AddCategory(category);
+}
  const createTask = (newTask : ITask)=>{
 
     setTasks([...tasks, newTask]);    
+    AddTask(newTask);
     setModal(false);
   }
   const createCategory = (newCategory : ICategory)=>{
 
-    setCategories([...categories, newCategory]);    
+    setCategories([...categories, newCategory]);  
+    AddCategory(newCategory);  
     setModal(false);
   }
 
@@ -46,7 +56,7 @@ const NavBar = () => {
                         <span>Добавить категорию</span> 
                     }
             </div>
-            <MyModel visible={modal} setVisable={setModal} title={'adas'}>
+            <MyModel visible={modal} setVisable={setModal} >
                 {
                    
                         location.pathname ==='/Tasks' 

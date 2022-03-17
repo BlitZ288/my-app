@@ -3,9 +3,14 @@ import MyButtonPrimary from '../button/MyButtonPrimary';
 import MyButtonSecondary from '../button/MyButtonSecondary';
 import '../../../styles/form.css';
  const MyForm:FC<IMyForm> = (propsForm) => {
+ 
+  function defualtSubmit(event:React.FormEvent<HTMLFormElement>){
+    event.preventDefault(); 
+    propsForm.move();
+  }
 
   return (
-    <form className='from__templete' onSubmit={(event)=>propsForm.move(event)}>
+    <form className='from__templete' onSubmit={(event)=>defualtSubmit(event)}>
         <div className='header__form'>
           <h2 className='title__form'>{propsForm.titleForm}</h2>
           </div>

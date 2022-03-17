@@ -1,5 +1,4 @@
-import React, { FC, useContext, useState } from 'react'
-import CategoryServise from '../../API/CategoryServise';
+import React, { FC,  useState } from 'react'
 import MyForm from '../UI/form/MyForm';
 import MyTextArena from '../UI/input/MyTextArena';
 import MyTextInput from '../UI/input/MyTextInput';
@@ -7,10 +6,6 @@ import MyTextInput from '../UI/input/MyTextInput';
  const CategoryFormAdd :FC<ICreateForm> = ({createCategory, lastId ,close}) => {
 
   const [category , setCategory] = useState({name:'',description:''})
-  
-  async function AddCategory(category: ICategory) {     
-    await CategoryServise.AddCategory(category);
-  }
 
   const addNewCategory = (event:React.FormEvent<HTMLFormElement>)  =>
   {
@@ -22,7 +17,6 @@ import MyTextInput from '../UI/input/MyTextInput';
            remove:()=>{}
       };     
       createCategory?.(newCategory);   
-      AddCategory(newCategory);     
       setCategory({name:'',description:''});        
   }
   return (

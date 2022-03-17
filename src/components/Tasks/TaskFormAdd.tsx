@@ -1,5 +1,4 @@
 import React, { FC, useContext, useState } from 'react'
-import TaskService from '../../API/TaskServise'
 import MyTextInput from '../UI/input/MyTextInput'
 import '../../styles/form.css'
 import '../../styles/select.css'
@@ -11,30 +10,24 @@ import MyTextArena from '../UI/input/MyTextArena'
  const TaskFormAdd : FC<ICreateForm>  = ({createTask , lastId, close} ) => {
 
     const [task , setTask] = useState({name:'',description:'',categoryId:0,categoryName:''})
-    const {tasks, categories} = useContext(ListContext);
-    const [nameCategory , setnameCategory] = useState('');
+    const {categories} = useContext(ListContext);
 
-    async function AddTask(task: ITask) {     
-      await TaskService.AddTask(task);
-    }
-    
     const addNewTask = (event:React.FormEvent<HTMLFormElement>)  =>
     {
-      event.preventDefault();   
+       
 
         const newTask :ITask ={
              ...task ,
-             id:lastId+1,
-             categoryName:nameCategory,
-             remove:()=>{}
-        };     
-        createTask?.(newTask);   
-        AddTask(newTask);     
-        setTask({name:'',description:'',categoryId:0,categoryName:''});        
+             id:lastId+1,             
+             remove:()=>{},
+             update:()=>{}
+        }; 
+        createTask?.(newTask);            
+        setTask({name:'',description:'',categoryId:0,categoryName:''});  
+        close(false);      
     }
-
   return (
-
+      
        <MyForm 
        titleForm={'Создание задачи'}        
        titlePrimaryButton={'Создать'}
@@ -54,26 +47,22 @@ import MyTextArena from '../UI/input/MyTextArena'
             required>          
             </MyTextInput>
 
-            <MySelectInput
-            optionsTasks={tasks}
+            <MySelectInput           
             defaultValue='Выберите категорию' 
             labelSelect='Категория'
-            optionsCategories={categories} 
-            value={task.categoryId}
+            optionsCategories={categories}            
             onChange={category=>setTask({...task , categoryId:category})}
             required={false}
-            setNameCategory={setnameCategory}
             >
             </MySelectInput>
             
           </div>
           <MyTextArena
-          className='description__input'
+          className='description__textarea'
           labelInput='Описание' 
-          onChange = {(e:React.KeyboardEvent<HTMLInputElement>) => setTask({...task, description:e.currentTarget.value})}
-          type="text"
-          value ={task.description}
-          placeholder='Описание '
+          onChange = {(e:React.ChangeEvent<HTMLTextAreaElement>) => setTask({...task, description:e.currentTarget.value})}  
+          placeholder='Описание'
+          value={task.description}
           required
           >
 

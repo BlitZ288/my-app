@@ -7,12 +7,15 @@ const TaskList :FC<ITaskList> = (tasks) => {
   return (
     <div>    
       {tasks.items.map((task)=> 
-          <TaskItem remove={tasks.removeTask} 
+          <TaskItem 
+        
            key={task.id} 
            id={task.id} 
            name={task.name}
            description={task.description}
            categoryName={task.categoryName}
+           remove={tasks.removeTask} 
+           update={tasks.updateTask}
            />
       )}
     </div>

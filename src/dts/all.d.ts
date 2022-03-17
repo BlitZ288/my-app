@@ -9,23 +9,33 @@ interface IMyButtonPrimary{
 interface IMyModel{
     children?: React.ReactNode;
     visible:boolean;
-    title:string;
     setVisable:React.Dispatch<React.SetStateAction<boolean>>;
 
 }
 interface IMyInput extends React.HTMLProps<Input>{
     labelInput:string;
+}
 
-}
-interface IMyTextIntput extends React.HTMLProps<Input>{
-   labelInput:string;
-}
 interface ICreateForm{
     createTask?:(newTask: ITask) => void;
     createCategory?:(newCategoryt: ICategory) => void;
     lastId:number;
     close:React.Dispatch<React.SetStateAction<boolean>>;
 }
+interface IEditeFrom{
+    task:ITask;
+    editTask:(task:ITask)=>void;
+    close:React.Dispatch<React.SetStateAction<boolean>>;
+}
+interface IDeleteForm{
+    nameDeleteObject:string;
+    deleteObject:string;
+    removeTask?:(idTask: number) => void;
+    removeCategory?:(idCategory: number) => void;    
+    close:React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+
 interface IMyForm extends React.HTMLProps<Form>{
     titleForm:string;
     children: React.ReactNode;
@@ -35,13 +45,12 @@ interface IMyForm extends React.HTMLProps<Form>{
     close:React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface IMySelect extends React.HTMLProps<Select> {
-    optionsTasks: Array<ITask>;
-    optionsCategories: Array<ICategory>;
+    optionsTasks?: Array<ITask>;
+    optionsCategories?: Array<ICategory>;
     defaultValue: string;
     labelSelect:string;
     onChange:(idCategory:number)=>void;
-    setNameCategory:(nameCategory:string)=>void;
-    value: number;
+    
 }
 
 
@@ -56,6 +65,7 @@ interface ICategoryList{
 interface ITaskList{   
     items:Array<ITask>;    
     removeTask  : (idTask : number)=>void;
+    updateTask :(updateTask:ITask)=>void;
 }
 interface ITask{
     id:number;
@@ -64,6 +74,7 @@ interface ITask{
     categoryId?:number;
     categoryName:string;
     remove :(idTask:number)=>void;
+    update :(updateTask:ITask)=>void;
 }
 interface ICategory{
     id:number;

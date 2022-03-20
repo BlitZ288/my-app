@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import CategoryServise from '../../../API/CategoryServise';
-import TaskService from '../../../API/TaskServise';
+import { NavLink, useLocation } from 'react-router-dom';
 import { ListContext } from '../../../Context';
 import   '../../../styles/navBar.css';
 import CategoryFormAdd from '../../Category/CategoryFormAdd';
-import TaskFormAdd from '../../Tasks/TaskFormAdd';
+import TaskForm from '../../Tasks/TaskForm';
 import MyModel from '../Model/MyModel';
 import styleLink from './NavBar.module.css';
 
@@ -13,26 +11,8 @@ const NavBar = () => {
 
  const location = useLocation();
  const [modal , setModal] = useState(false);
- const {tasks,categories, setTasks,setCategories} = useContext(ListContext);
+ const {tasks,categories, createTask, createCategory} = useContext(ListContext);
 
- async function AddTask(task: ITask) {     
-  await TaskService.AddTask(task);
-}
-async function AddCategory(category: ICategory) {     
-  await CategoryServise.AddCategory(category);
-}
- const createTask = (newTask : ITask)=>{
-
-    setTasks([...tasks, newTask]);    
-    AddTask(newTask);
-    setModal(false);
-  }
-  const createCategory = (newCategory : ICategory)=>{
-
-    setCategories([...categories, newCategory]);  
-    AddCategory(newCategory);  
-    setModal(false);
-  }
 
 
   return (
@@ -61,7 +41,14 @@ async function AddCategory(category: ICategory) {
                    
                         location.pathname ==='/Tasks' 
                         ?
-                        <TaskFormAdd close={setModal} createTask={createTask} lastId={tasks[tasks.length-1].id}> </TaskFormAdd> 
+                        <TaskForm 
+                        close={setModal}
+                        workingOnTask={createTask}
+                        lastId={tasks[tasks.length-1].id}
+                        titleForm='Создание задачи'
+                        titlePrimaryButton='Создать'
+                        
+                        ></TaskForm>
                         :
                         <CategoryFormAdd close={setModal} createCategory={createCategory}  lastId={categories[categories.length-1].id}>Добавить категорию</CategoryFormAdd> 
                     

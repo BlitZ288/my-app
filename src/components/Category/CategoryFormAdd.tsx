@@ -30,6 +30,7 @@ import MyTextInput from '../UI/input/MyTextInput';
 
     <div className='content__add'>
             <MyTextInput 
+            name='category__name'
             className='input__AddCategory'
             labelInput='Имя' 
             onChange = {(e:React.KeyboardEvent<HTMLInputElement>) => setCategory({...category, name:e.currentTarget.value})}
@@ -40,7 +41,8 @@ import MyTextInput from '../UI/input/MyTextInput';
            />
 
             <MyTextArena
-            className='description__input'
+            name='category__description'
+            className='description__textarea'
             labelInput='Описание' 
             onChange = {(e:React.KeyboardEvent<HTMLInputElement>) => setCategory({...category, description:e.currentTarget.value})}
             type="text"

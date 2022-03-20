@@ -5,28 +5,26 @@ import deleteImage from '../img/delete.svg';
 import iconFolder from '../img/folder.svg';
 import MyModel from '../UI/Model/MyModel';
 import TaskFormDelete from './TaskFormDelete';
-import TaskFormEdit from './TaskFormEdit';
 import { ListContext } from '../../Context';
+import TaskForm from './TaskForm';
 
 const TaskItem = (TaskItem:ITask) => {  
     
     const [deleteModal, setDeleteModal] = useState(false); 
     const [editModal, setEditModal] = useState(false); 
     const {categories} = useContext(ListContext);
-    const [taskItem , setTaskItem] = useState(TaskItem);
+    const [taskItem , setTaskItem] = useState(TaskItem);    
 
   function serchCategoryNamseById(idCategory?:number) :string
-  {   
+  { 
     let indexSerch = categories.findIndex(category=> (category.id === idCategory));       
     return categories[indexSerch].name;
   }
   
   useEffect(()=>{ 
-      setTaskItem({...TaskItem , categoryName:serchCategoryNamseById(TaskItem.id)});
+      setTaskItem({...TaskItem , categoryName:serchCategoryNamseById(TaskItem.categoryId)});
     
   },[]);
-  
-
     return (
       <div>     
         <div className='continerItem'>
@@ -66,16 +64,20 @@ const TaskItem = (TaskItem:ITask) => {
                
             </MyModel>
             <MyModel visible={editModal} setVisable={setEditModal} >
-                <TaskFormEdit
-                close={setEditModal}
-                task={taskItem}   
-                editTask={()=>TaskItem.update(taskItem)} 
-               />
-
+              <TaskForm
+              workingOnTask={TaskItem.update}
+              close={setEditModal}
+              task={TaskItem}   
+              titlePrimaryButton='Сохранить'
+              titleForm='Редактирование задачи'           
+              
+              />
+               
                
             </MyModel>
     </div>
     );
 }
+  
 
 export default TaskItem;

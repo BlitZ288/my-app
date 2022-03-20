@@ -1,5 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
+
 interface IListContext 
 {   
     tasks: Array<ITask>;
@@ -10,8 +11,21 @@ interface IListContext
     setCategories: Dispatch<SetStateAction<ICategory[]>>;  
     isLoadingCategories:boolean; 
     setisLoadingCategories:Dispatch<SetStateAction<boolean>>
+
+    createTask:(newTask : ITask)=>void;
+    removeTask:(idTask : number)=>void;
+    updateTask:(updateTask:ITask)=>void;
+
+    createCategory:(newCategory : ICategory)=>void;
+    removeCategory:(idCategory :number)=>void;
+    updateCategory:(updateCategory:ICategory)=>void;
+
 }
 
 
-export const ListContext  = createContext<IListContext>({} as IListContext);
-//export const CategoryContext  = createContext<ICategoryContext>({} as ICategoryContext);
+export const ListContext  = createContext<IListContext>({
+
+    
+
+
+} as IListContext);

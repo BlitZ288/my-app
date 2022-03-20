@@ -13,8 +13,50 @@ function App() {
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [categories ,setCategories] = useState<ICategory[]>([]);
   const [isLoadingTasks ,setIsLoadingTask] = useState(true);
-  const [isLoadingCategories ,setisLoadingCategories] = useState(true);
-
+  const [isLoadingCategories ,setisLoadingCategories] = useState(true);  
+  
+  const removeTask = (idTask : number)=>{    
+    setTasks(tasks.filter(t=>t.id !== idTask));
+    TaskService.RemoveTask(idTask);
+  }
+  const updateTask = (updateTask:ITask)=>{
+    
+    const tempTasks: Array<ITask>=[];
+    for(let task of tasks){
+      if(task.id===updateTask.id){
+        continue;
+      }
+      tempTasks.push(task);
+    }
+    tempTasks.push(updateTask);   
+    TaskService.UpdateTask(updateTask);
+    setTasks(tempTasks);
+  }
+  const removeCategory = (idCategory :number)=>{
+    setCategories(categories.filter(c=>c.id !== idCategory));
+    CategoryServise.RemoveCategor(idCategory);
+  }
+  async function AddTask(task: ITask) {     
+    await TaskService.AddTask(task);
+  }
+  async function AddCategory(category: ICategory) {     
+    await CategoryServise.AddCategory(category);
+  }
+   const createTask = (newTask : ITask)=>{
+      
+      setTasks([...tasks, newTask]);    
+      AddTask(newTask);
+      
+    }
+    const createCategory = (newCategory : ICategory)=>{
+  
+      setCategories([...categories, newCategory]);  
+      AddCategory(newCategory);  
+    }
+  
+    const updateCategory = (updateCategoty:ICategory)=>{
+      
+    }
   async function GetTasks() {
     const tasks = await TaskService.GetAllTasks();
     setTasks(tasks)
@@ -50,11 +92,17 @@ function App() {
           setTasks:setTasks,
           isLoadingTask:isLoadingTasks,
           setIsLoadingTask:setIsLoadingTask,
+          createTask:createTask,
+          removeTask:removeTask,
+          updateTask:updateTask,       
 
           categories:categories,
           setCategories:setCategories,
           isLoadingCategories:isLoadingCategories,
-          setisLoadingCategories:setisLoadingCategories
+          setisLoadingCategories:setisLoadingCategories,
+          createCategory:createCategory,
+          removeCategory:removeCategory,
+          updateCategory:updateCategory,
         }
       }>
       <BrowserRouter>        
@@ -70,3 +118,7 @@ function App() {
 }
 
 export default App;
+function setModal(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+

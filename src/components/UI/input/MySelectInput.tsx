@@ -27,7 +27,7 @@ import TemplateInput from './MyInput';
     <TemplateInput labelInput={labelSelect} required={required}>
         <div onClick={()=>dropList()} className={classes.select +' '+ (isActive ? classes.is_active :'')  } >
             <div className={classes.select__header} >
-                <div className={classItemCurrent.join(' ')}>{currentItem}</div>
+                <div   className={classItemCurrent.join(' ')}>{currentItem}</div>
                 <div className={classes.select__icon}><img className={(isActive ? classes.rotate_scale_up :'')}  alt='arrow' src={arrowDown}></img></div>
             </div>
 

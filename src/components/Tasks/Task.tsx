@@ -5,32 +5,10 @@ import '../../styles/App.css'
 import { ListContext } from '../../Context';
 
 function Task() {
-  const {tasks,setTasks} = useContext(ListContext);
-  
-  const removeTask = (idTask : number)=>{ 
-    console.log(idTask);
-    setTasks(tasks.filter(t=>t.id !== idTask));
-    TaskService.RemoveTask(idTask);
-  }
-  const updateTask = (updateTask:ITask)=>{
-    console.log(updateTask);
-    const tempTasks: Array<ITask>=[];
-    for(let task of tasks){
-      if(task.id===updateTask.id){
-        continue;
-      }
-      tempTasks.push(task);
-    }
-    tempTasks.push(updateTask);
-   
-    TaskService.UpdateTask(updateTask);
-    setTasks(tempTasks);
-  }
-
-
+  const {tasks} = useContext(ListContext);
   return (
     <div className="App">  
-       <TaskList removeTask={removeTask} updateTask={updateTask} items={tasks} ></TaskList>  
+       <TaskList items={tasks} ></TaskList>  
     </div>
   );
 }

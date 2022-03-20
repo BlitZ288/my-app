@@ -5,10 +5,10 @@ import Task from './Tasks/Task';
 
  const AppRouter = () => {
   return (
-    <Routes>
-          <Route path="*" element={<Task />}/>
+    <Routes>         
           <Route path='/Tasks' element={<Task />}> </Route>
           <Route path='/Category' element={<Category />}> </Route>
+          <Route path="*" element={<Task />}/>
       </Routes>
   )
 }

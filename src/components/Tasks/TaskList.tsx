@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import TaskItem from './TaskItem';
 import '../../styles/ListToDo.css';
+import { ListContext } from '../../Context';
 
 
 const TaskList :FC<ITaskList> = (tasks) => {
+  const {removeTask, updateTask} = useContext(ListContext);
   return (
     <div>    
       {tasks.items.map((task)=> 
@@ -13,9 +15,9 @@ const TaskList :FC<ITaskList> = (tasks) => {
            id={task.id} 
            name={task.name}
            description={task.description}
-           categoryName={task.categoryName}
-           remove={tasks.removeTask} 
-           update={tasks.updateTask}
+           categoryId={task.categoryId}           
+           remove={removeTask} 
+           update={updateTask}
            />
       )}
     </div>

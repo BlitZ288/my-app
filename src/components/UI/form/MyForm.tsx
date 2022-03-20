@@ -9,6 +9,7 @@ import '../../../styles/form.css';
     propsForm.move();
   }
 
+
   return (
     <form className='from__templete' onSubmit={(event)=>defualtSubmit(event)}>
         <div className='header__form'>

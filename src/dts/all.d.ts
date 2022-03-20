@@ -14,6 +14,7 @@ interface IMyModel{
 }
 interface IMyInput extends React.HTMLProps<Input>{
     labelInput:string;
+    valid:boolean;
 }
 
 interface ICreateForm{
@@ -52,6 +53,14 @@ interface IMySelect extends React.HTMLProps<Select> {
     onChange:(idCategory:number)=>void;
     
 }
+interface ITaskForm{
+    workingOnTask:(task:ITask)=>void;
+    close:React.Dispatch<React.SetStateAction<boolean>>; 
+    task?:ITask;
+    lastId?:number;
+    titlePrimaryButton:string;
+    titleForm:string
+}
 
 
 
@@ -64,15 +73,14 @@ interface ICategoryList{
 
 interface ITaskList{   
     items:Array<ITask>;    
-    removeTask  : (idTask : number)=>void;
-    updateTask :(updateTask:ITask)=>void;
+   
 }
 interface ITask{
     id:number;
     name:string;
     description:string;
-    categoryId?:number;
-    categoryName:string;
+    categoryId:number;
+    categoryName?:string;
     remove :(idTask:number)=>void;
     update :(updateTask:ITask)=>void;
 }

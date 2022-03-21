@@ -9,7 +9,6 @@ import '../../../styles/form.css';
     propsForm.move();
   }
 
-
   return (
     <form className='from__templete' onSubmit={(event)=>defualtSubmit(event)}>
         <div className='header__form'>
@@ -20,9 +19,9 @@ import '../../../styles/form.css';
         </div>
         <div className='conteiner__button'>
           
-          <MyButtonPrimary >{propsForm.titlePrimaryButton}</MyButtonPrimary>
+          <MyButtonPrimary disabled={!propsForm.valid}>{propsForm.titlePrimaryButton}</MyButtonPrimary>
           
-          <MyButtonSecondary onClick={()=>propsForm.close(false)}>{propsForm.titleSecondaryButton}</MyButtonSecondary>
+          <MyButtonSecondary  onClick={()=>propsForm.close(false)}>{propsForm.titleSecondaryButton}</MyButtonSecondary>
         </div>
 
     </form>

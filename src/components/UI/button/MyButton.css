@@ -13,6 +13,9 @@
 .myBtn:active{
     background-color: #65ABFF;
 }
+.myBtn:disabled{
+    background-color: #E5E5E5;
+}
 .myBtnClose{
     border: none;
     background: none;

@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import CategoryServise from './API/CategoryServise';
 import TaskService from './API/TaskServise';
 import AppRouter from './components/AppRouter';
+import Loader from './components/UI/loader/Loader';
 import NavBar from './components/UI/NavBar/NavBar';
 import { ListContext } from './Context';
 
@@ -14,6 +15,7 @@ function App() {
   const [categories ,setCategories] = useState<ICategory[]>([]);
   const [isLoadingTasks ,setIsLoadingTask] = useState(true);
   const [isLoadingCategories ,setisLoadingCategories] = useState(true);  
+  const [loading ,setLoading] = useState(false);  
   
   const removeTask = (idTask : number)=>{    
     setTasks(tasks.filter(t=>t.id !== idTask));
@@ -55,7 +57,16 @@ function App() {
     }
   
     const updateCategory = (updateCategoty:ICategory)=>{
-      
+      const tempCategories: Array<ICategory>=[];
+      for(let category of categories){
+        if(category.id===updateCategoty.id){
+          continue;
+        }
+        tempCategories.push(category);
+      }
+      tempCategories.push(updateCategoty);   
+      CategoryServise.UpdateCategory(updateCategoty);
+      setCategories(tempCategories);
     }
   async function GetTasks() {
     const tasks = await TaskService.GetAllTasks();
@@ -63,16 +74,16 @@ function App() {
   }
   
   useEffect(()=>{
+    setLoading(true);  
     setIsLoadingTask(true); 
-    GetTasks().then(
-      ()=>setIsLoadingTask(false)
-    );
-
-    setisLoadingCategories(true);
-    GetCategories().then(
-      ()=>setisLoadingCategories(false)
-    );
-    
+      GetTasks().then(
+        ()=>setIsLoadingTask(false)
+      );  
+      setisLoadingCategories(true);
+      GetCategories().then(
+        ()=>setisLoadingCategories(false)
+      );
+    setLoading(false);
   },[])
   
   async function GetCategories() {
@@ -84,8 +95,6 @@ function App() {
   return(
       (isLoadingCategories===false && isLoadingTasks ===false) 
       ?
-      
-
       <ListContext.Provider value={
         {
           tasks:tasks, 
@@ -111,14 +120,12 @@ function App() {
       </BrowserRouter>
       </ListContext.Provider>
       :
-      <h1>Идет закгрузка</h1>
+      <Loader visible={loading} />
+      
       
   )
   
 }
 
 export default App;
-function setModal(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
 

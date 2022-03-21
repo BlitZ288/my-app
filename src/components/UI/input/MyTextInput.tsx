@@ -1,10 +1,20 @@
 import TemplateInput from "./MyInput";
-import classes from "./MyInput.module.css"
+import   "./MyInput.css"
 const MyTextInput = ({labelInput, ...props}:IMyInput) =>{
     return(
-        <TemplateInput className={props.className } labelInput={labelInput} required={props.required} valid={props.valid}>
-            <input {...props} className={classes.myInput}  />
+        <div style={{display:'flex', flexDirection:'column', marginBottom: '20px'}}>
+        <TemplateInput className={props.className } labelInput={labelInput} required={props.required} >
+            <input {...props} className='myInput'  />
         </TemplateInput>
+        <div className="conteiner__errors">
+            {
+                props.errors?.map((value, index)=>{
+                   
+                    return(<span key={index} className={'error__message'}>{value}</span>)
+                })
+            }
+        </div>
+        </div>
     )
 }
 export default MyTextInput;

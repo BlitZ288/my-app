@@ -120,4 +120,20 @@
 .description__textarea:focus-visible{
   outline: none;
 }
+.conteiner__errors{
+  text-align: center;
+}
+.error__input{
+  border-color: #EC1D1D;
+}
+.error__input legend{
+  color: #EC1D1D;
+}
+.error__message{
+  font-size: 14px;
+    line-height: 20px;
+    color: #EC1D1D;
+    text-align: center;
+
+}
 

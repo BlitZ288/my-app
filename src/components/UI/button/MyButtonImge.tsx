@@ -1,9 +1,9 @@
-import React from 'react'
-import classes from './MyButton.module.css';
+import React, { FC } from 'react'
+import  './MyButton.css';
 
- const MyButtonImge = ({...props}:IMyButtonSecondary) => {
+ const MyButtonImge:FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({...props}) => {
   return (
-    <button {...props} className={classes.myBtnClose} type='button' ></button>
+    <button {...props} className={'myBtnClose'} type='button' ></button>
   )
 }
 export default MyButtonImge;

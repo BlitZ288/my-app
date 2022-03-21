@@ -1,11 +1,4 @@
-interface IMyButtonSecondary{
-    onClick? : React.MouseEventHandler<HTMLButtonElement>;
-    children: React.ReactNode;
-} 
-interface IMyButtonPrimary{
-    onClick? : React.MouseEventHandler<HTMLButtonElement>;
-    children: React.ReactNode;
-} 
+
 interface IMyModel{
     children?: React.ReactNode;
     visible:boolean;
@@ -14,7 +7,7 @@ interface IMyModel{
 }
 interface IMyInput extends React.HTMLProps<Input>{
     labelInput:string;
-    valid:boolean;
+    errors?:Array<string>
 }
 
 interface ICreateForm{
@@ -44,6 +37,7 @@ interface IMyForm extends React.HTMLProps<Form>{
     titleSecondaryButton:string;
     move:(DOMAttributes<Form>);
     close:React.Dispatch<React.SetStateAction<boolean>>;
+    valid:boolean;
 }
 interface IMySelect extends React.HTMLProps<Select> {
     optionsTasks?: Array<ITask>;
@@ -51,6 +45,7 @@ interface IMySelect extends React.HTMLProps<Select> {
     defaultValue: string;
     labelSelect:string;
     onChange:(idCategory:number)=>void;
+    
     
 }
 interface ITaskForm{
@@ -61,20 +56,15 @@ interface ITaskForm{
     titlePrimaryButton:string;
     titleForm:string
 }
-
-
-
-
-interface ICategoryList{
-    items:Array<ICategory>;
-    removeCategory: (idCategory:number)=>void;
+interface ICategoryForm{
+    workingOnCategory:(category:ICategory)=>void;
+    close:React.Dispatch<React.SetStateAction<boolean>>; 
+    category?:ICategory;
+    lastId?:number;
+    titlePrimaryButton:string;
+    titleForm:string
 }
 
-
-interface ITaskList{   
-    items:Array<ITask>;    
-   
-}
 interface ITask{
     id:number;
     name:string;
@@ -89,18 +79,12 @@ interface ICategory{
     name:string;
     description:string;
     remove :(idCategory:number)=>void;
+    update :(updateCategory:ICategory)=>void;
 
 }
 interface INavLink {
     pathname:string;
 }
-
-
-
-
-
-
-
 
 declare module "*.module.css";
 declare module "*.svg"

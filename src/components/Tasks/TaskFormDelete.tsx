@@ -4,6 +4,7 @@ import MyForm from '../UI/form/MyForm';
  const TaskFormDelete:FC<IDeleteForm> = ({nameDeleteObject,removeTask, close}) => {
   return (
     <MyForm
+    valid={true}
     titleForm={'Удаление задачи'}
     titlePrimaryButton={'Да'}
     titleSecondaryButton={'Нет'}

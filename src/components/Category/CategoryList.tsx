@@ -1,12 +1,24 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
+import { ListContext } from '../../Context';
 import CategoryItem from './CategoryItem';
 
- const CategoryList:FC<ICategoryList> = (categories) => {
+ const CategoryList:FC<{categories:Array<ICategory>}> = ({categories}) => {
+  const {removeCategory, updateCategory} = useContext(ListContext);
+ 
   return (
     <div>
      {
-         categories.items.map((category)=>
-            <CategoryItem  key={category.id} id={category.id} name={category.name} description={category.description} remove={categories.removeCategory}></CategoryItem>
+         categories.map((category)=>
+            <CategoryItem
+            key={category.id}
+              id={category.id}
+              name={category.name}
+              description={category.description}
+              remove={removeCategory}
+              update= {updateCategory}
+            />
+
+          
          )
      }
     </div>

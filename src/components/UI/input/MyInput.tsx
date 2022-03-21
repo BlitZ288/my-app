@@ -1,13 +1,13 @@
 import React from 'react'
-import classes from "./MyInput.module.css"
+import  "./MyInput.css"
 
 const TemplateInput  = ({children,labelInput,required, className}:IMyInput) => {
   return (
-    <fieldset  className={classes.fieldsetInput + ' '+ className}> 
+    <fieldset  className={'fieldsetInput' + ' '+ className}> 
 
-      <legend className={classes.legendInput}>
+      <legend className={'legendInput'}>
       {labelInput}
-      {required?<span className={classes.req}> *</span>:''}        
+      {required?<span className={'req'}> *</span>:''}        
       </legend>
 
      {children}

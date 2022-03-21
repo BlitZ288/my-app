@@ -8,7 +8,7 @@ import { useValidation } from "./useValidation";
      const [isDirty, setDirty] = useState(false);
      const valid = useValidation(value, validations)
      
-     const onChange= (e: { currentTarget: { value: SetStateAction<string>; }; }) =>{
+     const onChange = (e: { currentTarget: { value: SetStateAction<string>; }; }) =>{
          setValue(e.currentTarget.value);
      }
 

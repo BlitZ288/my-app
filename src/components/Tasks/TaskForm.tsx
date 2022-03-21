@@ -9,12 +9,11 @@ import MyTextInput from '../UI/input/MyTextInput';
  const TaskForm:FC<ITaskForm> = ({workingOnTask, close,task, lastId, titlePrimaryButton, titleForm} ) => {
     
     const {categories} = useContext(ListContext);
-    const nameTask = useInput(task?.name??  '', {isEmpty:true, maxLenght:3});
-    const descriptionTask = useInput(task?.description?? '', {isEmpty:true, maxLenght:4});   
+    const nameTask = useInput(task?.name??  '', {isEmpty:true, maxLenght:254 });
+    const descriptionTask = useInput(task?.description?? '', { maxLenght:1535 });   
     const [categoryIdTask,setCategoryId] = useState(0);
-    const currentTask = task?? {} as ITask;
-   
-    
+    const currentTask = task?? {} as ITask; 
+
     const move = ()=>{
         const tempTask:ITask = currentTask ? {
             ...currentTask,
@@ -34,9 +33,9 @@ import MyTextInput from '../UI/input/MyTextInput';
         close(false);  
     }
     
-
   return (
     <MyForm 
+       valid={(nameTask.errorMap.size === 0 && descriptionTask.errorMap.size === 0) }  
        titleForm={titleForm}        
        titlePrimaryButton={titlePrimaryButton}
        titleSecondaryButton={'Закрыть'} 
@@ -46,52 +45,35 @@ import MyTextInput from '../UI/input/MyTextInput';
        <div className='content__add'>
           <div className='conteiner__first__row'>
             <MyTextInput
-            valid={(nameTask.isDirty && nameTask.errorMessages.length != 0)} 
+            errors={ nameTask.isDirty ?   Array.from(nameTask.errorMap.values()) : []}
             name='task__name'
-            className={'input__AddTask '}
+            className={((nameTask.errorMap.size && nameTask.isDirty) ? 'error__input' : '' )}
             labelInput='Имя' 
-            onChange = {e=> nameTask.onChange(e)}
-            onBlur={e=> nameTask.onBlur(e)}
+            onChange = {e => nameTask.onChange(e)}
+            onBlur={e => nameTask.onBlur(e)}
             value ={nameTask.value}
             type="text" 
             placeholder='Назавание'
-            required>          
-            </MyTextInput>
-            {(nameTask.isDirty && nameTask.errorMessages.length != 0)
-             ?
-             nameTask.errorMessages.map((message)=>{
-                 <span className='error__messages'>{message}</span>
-             })
-             : ''
-            }
-            <MySelectInput                      
-            defaultValue={currentTask.categoryName?? 'Выберите категорию'} 
+            required />          
+            
+            <MySelectInput
+            defaultValue={task?.categoryName?? 'Выберите категорию'} 
             labelSelect='Категория'
             optionsCategories={categories}            
             onChange={category=>setCategoryId(category)}
             required={false}
-            >
-            </MySelectInput>
-            
+            />
+
           </div>
           <MyTextArena
-          valid={(descriptionTask.isDirty && descriptionTask.errorMessages.length != 0)} 
+          errors={Array.from(descriptionTask.errorMap.values())}
           name='task__description'
-          className='description__textarea'
+          className={'description__textarea ' + ((descriptionTask.errorMap.size) ? 'error__input' : '')}
           labelInput='Описание' 
-          onChange = {e=> descriptionTask.onChange(e)} 
+          onChange = {e => descriptionTask.onChange(e)} 
           value={descriptionTask.value}
-          placeholder='Описание'
-          required
-          >
-          </MyTextArena>
-          {(descriptionTask.isDirty && descriptionTask.errorMessages.length != 0)
-             ?
-             descriptionTask.errorMessages.map((message)=>{
-                 <span className='error__messages'>{message}</span>
-             })
-             : ''
-            }
+          placeholder='Описание'          
+          />         
         </div>
        </MyForm> 
   )

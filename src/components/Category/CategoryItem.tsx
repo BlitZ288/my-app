@@ -4,6 +4,7 @@ import deleteImage from '../img/delete.svg';
 import MyButtonImge from '../UI/button/MyButtonImge';
 import MyModel from '../UI/Model/MyModel';
 import TaskFormDelete from '../Tasks/TaskFormDelete';
+import CategoryForm from './CategoryForm';
 
  const CategoryItem:FC<ICategory> = (categoryItem) => {
     const [deleteModal, setDeleteModal] = useState(false); 
@@ -21,7 +22,7 @@ import TaskFormDelete from '../Tasks/TaskFormDelete';
                 </div>
             </div>
             <div className='containerButton'>
-            <MyButtonImge onClick={()=>{}}>
+            <MyButtonImge onClick={()=>setEditModal(true)}>
                     <img src={editIamge} alt='edit'></img>
                 </MyButtonImge>
                 <MyButtonImge onClick={()=>setDeleteModal(true)}>
@@ -39,7 +40,17 @@ import TaskFormDelete from '../Tasks/TaskFormDelete';
                 removeTask={()=>categoryItem.remove(categoryItem.id)}
                 nameDeleteObject={categoryItem.name}  
                 />
-
+       </MyModel>
+       <MyModel visible={editModal} setVisable={setEditModal} >
+              <CategoryForm
+              workingOnCategory={categoryItem.update}
+              close={setEditModal}
+              category={categoryItem}   
+              titlePrimaryButton='Сохранить'
+              titleForm='Редактирование категории'           
+              
+              />
+               
                
             </MyModel>
 </div>

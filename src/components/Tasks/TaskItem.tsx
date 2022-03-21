@@ -54,6 +54,7 @@ const TaskItem = (TaskItem:ITask) => {
                 </div>
             </div>
             <MyModel visible={deleteModal} setVisable={setDeleteModal} >
+
                 <TaskFormDelete 
                 deleteObject='задачу'
                 close={setDeleteModal}
@@ -64,15 +65,15 @@ const TaskItem = (TaskItem:ITask) => {
                
             </MyModel>
             <MyModel visible={editModal} setVisable={setEditModal} >
+
               <TaskForm
               workingOnTask={TaskItem.update}
               close={setEditModal}
-              task={TaskItem}   
+              task={taskItem}   
               titlePrimaryButton='Сохранить'
               titleForm='Редактирование задачи'           
               
-              />
-               
+              />               
                
             </MyModel>
     </div>

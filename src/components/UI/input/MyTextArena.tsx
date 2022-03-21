@@ -3,10 +3,20 @@ import TemplateInput from './MyInput'
 
 const MyTextArena = ({labelInput, ...props}:IMyInput) => {
   return (
-    <TemplateInput  labelInput={labelInput} required={props.required} valid={props.valid}>
+    <div style={{display:'flex', flexDirection:'column'}}>
+    <TemplateInput  labelInput={labelInput} required={props.required} >
       <textarea name={props.name}  className={props.className} {...props} ></textarea>
 
      </TemplateInput>
+     <div className="conteiner__errors">
+            {
+                props.errors?.map((value, index)=>{
+                   
+                    return(<span key={index} className={'error__message'}>{value}</span>)
+                })
+            }
+        </div>
+     </div>
   )
 }
 

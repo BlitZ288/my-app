@@ -4,13 +4,13 @@ import '../../styles/ListToDo.css';
 import { ListContext } from '../../Context';
 
 
-const TaskList :FC<ITaskList> = (tasks) => {
+const TaskList :FC<{tasks:Array<ITask>}> = ({tasks}) => {
   const {removeTask, updateTask} = useContext(ListContext);
   return (
-    <div>    
-      {tasks.items.map((task)=> 
-          <TaskItem 
+    <div>  
         
+      {tasks.map((task)=> 
+          <TaskItem         
            key={task.id} 
            id={task.id} 
            name={task.name}

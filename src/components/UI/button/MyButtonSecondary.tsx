@@ -1,9 +1,9 @@
-import React from 'react'
-import classes from './MyButton.module.css';
+import React, { FC } from 'react'
+import  './MyButton.css';
 
- const MyButtonSecondary = ({children , ...props}:IMyButtonSecondary) => {
+ const MyButtonSecondary:FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({children,...props}) => {
   return (
-    <button {...props} className={classes.myBtn + ' '+ classes.mySecondaryBtn} >    
+    <button {...props} className={'myBtn' + ' '+ 'mySecondaryBtn'} >    
         {children}
     </button>
   )

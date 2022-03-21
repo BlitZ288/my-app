@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom';
 import { ListContext } from '../../../Context';
 import   '../../../styles/navBar.css';
-import CategoryFormAdd from '../../Category/CategoryFormAdd';
+import CategoryForm from '../../Category/CategoryForm';
 import TaskForm from '../../Tasks/TaskForm';
 import MyModel from '../Model/MyModel';
 import styleLink from './NavBar.module.css';
@@ -50,7 +50,13 @@ const NavBar = () => {
                         
                         ></TaskForm>
                         :
-                        <CategoryFormAdd close={setModal} createCategory={createCategory}  lastId={categories[categories.length-1].id}>Добавить категорию</CategoryFormAdd> 
+                        <CategoryForm 
+                        close={setModal}
+                        workingOnCategory={createCategory}
+                        lastId={categories[categories.length - 1].id}
+                        titlePrimaryButton={'Создать'} 
+                        titleForm={'Создание категории'}>
+                        </CategoryForm> 
                     
                 }
             </MyModel> 

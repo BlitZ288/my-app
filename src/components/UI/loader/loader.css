@@ -1,0 +1,58 @@
+
+.loading{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    margin: 0;
+    padding: 0;
+   
+}
+.active{
+    display: block;
+}
+.loading span:first-child{    
+    animation-name: prig;
+    position: absolute;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    
+}
+.loading span:nth-child(2){  
+    left: 15px;  
+    animation-name: prig;
+    position: absolute;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+}
+.loading span:nth-child(3){  
+    left: 30px;  
+    animation-name: prig;
+    position: absolute;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+}
+
+.loading__item{
+    background-image: url('../../img/point.svg');
+    width: 15px;
+    color: transparent;
+    background-repeat: no-repeat;
+    height: 20px;
+    display: block;
+}
+
+@keyframes prig {
+    0%{
+        top: -15px;
+    }
+    
+    100%{
+        top: 0px;
+    }
+    
+}

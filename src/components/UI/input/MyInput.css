@@ -49,6 +49,7 @@
 .select{
   width: 100%;
   position: relative;
+  height: 35px;
 }
 .select__header{
   
@@ -61,7 +62,7 @@
   font-size: 20px;
   line-height: 24px;
   color: rgba(0, 0, 0, 0.5);
-  padding: 8px 0;
+  padding: 0px 0;
 }
 .select__current_isActive{ 
   color: #000; 

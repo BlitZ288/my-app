@@ -7,6 +7,7 @@ import MyModel from '../UI/Model/MyModel';
 import TaskFormDelete from './TaskFormDelete';
 import { ListContext } from '../../Context';
 import TaskForm from './TaskForm';
+import { TaskContext } from '../../Context/TaskContext';
 
 const TaskItem = (TaskItem:ITask) => {  
     
@@ -14,28 +15,33 @@ const TaskItem = (TaskItem:ITask) => {
     const [editModal, setEditModal] = useState(false); 
     const {categories} = useContext(ListContext);
     const [taskItem , setTaskItem] = useState(TaskItem);    
-
+    const {TaskService, tasks} = useContext(TaskContext);
   function serchCategoryNamseById(idCategory?:number) :string
   { 
-    let indexSerch = categories.findIndex(category=> (category.id === idCategory));       
-    return categories[indexSerch].name;
+    let indexSerch = categories.findIndex(category=> (category.id === idCategory));  
+    return indexSerch ===-1 ? '' : categories[indexSerch].name;
   }
-  
+ 
   useEffect(()=>{ 
       setTaskItem({...TaskItem , categoryName:serchCategoryNamseById(TaskItem.categoryId)});
-    
-  },[]);
+
+  },[TaskItem]);
+
+
     return (
-      <div>     
+      <div>  
         <div className='continerItem'>
                 <div className='itemTodo'>
                     <div className='infoItem'>
                         <div className='headerItem'>
                             <label className='name'>{taskItem.name}</label>
-                            <div className='additionalInfo'>                                
+                            {  taskItem.categoryName ?        
+                            <div className='additionalInfo'>                                                         
                                 <img className='additionalInfo__img' alt='folder' src={iconFolder}></img>
                                 <label className='nameAdditionl'>{taskItem.categoryName}</label>
                             </div>
+                             :''
+                            } 
                         </div>
                         <div className='description'>
                         {taskItem.description}
@@ -58,7 +64,8 @@ const TaskItem = (TaskItem:ITask) => {
                 <TaskFormDelete 
                 deleteObject='задачу'
                 close={setDeleteModal}
-                removeTask={()=>TaskItem.remove(taskItem.id)}
+                removeById={TaskItem.remove}
+                idDeleteObject={taskItem.id}
                 nameDeleteObject={taskItem.name}  
                 />
 
@@ -69,10 +76,11 @@ const TaskItem = (TaskItem:ITask) => {
               <TaskForm
               workingOnTask={TaskItem.update}
               close={setEditModal}
+              
               task={taskItem}   
               titlePrimaryButton='Сохранить'
               titleForm='Редактирование задачи'           
-              
+              categoryname={taskItem.categoryName ?? serchCategoryNamseById(taskItem.categoryId) }
               />               
                
             </MyModel>

@@ -6,14 +6,14 @@ import MySelectInput from '../UI/input/MySelectInput';
 import MyTextArena from '../UI/input/MyTextArena';
 import MyTextInput from '../UI/input/MyTextInput';
 
- const TaskForm:FC<ITaskForm> = ({workingOnTask, close,task, lastId, titlePrimaryButton, titleForm} ) => {
+ const TaskForm:FC<ITaskForm> = ({workingOnTask, close,task, lastId, categoryname, titlePrimaryButton, titleForm} ) => {
     
     const {categories} = useContext(ListContext);
     const nameTask = useInput(task?.name??  '', {isEmpty:true, maxLenght:254 });
     const descriptionTask = useInput(task?.description?? '', { maxLenght:1535 });   
     const [categoryIdTask,setCategoryId] = useState(0);
-    const currentTask = task?? {} as ITask; 
-
+    const currentTask = task?? {} as ITask;     
+    const defualtValue = useState(categoryname);
     const move = ()=>{
         const tempTask:ITask = currentTask ? {
             ...currentTask,
@@ -32,6 +32,7 @@ import MyTextInput from '../UI/input/MyTextInput';
         workingOnTask(tempTask);
         close(false);  
     }
+    
     
   return (
     <MyForm 
@@ -57,7 +58,7 @@ import MyTextInput from '../UI/input/MyTextInput';
             required />          
             
             <MySelectInput
-            defaultValue={task?.categoryName?? 'Выберите категорию'} 
+            defaultValue={defualtValue[0]} 
             labelSelect='Категория'
             optionsCategories={categories}            
             onChange={category=>setCategoryId(category)}

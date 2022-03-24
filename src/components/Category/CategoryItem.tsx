@@ -35,9 +35,10 @@ import CategoryForm from './CategoryForm';
         </div>
         <MyModel visible={deleteModal} setVisable={setDeleteModal} >
                 <TaskFormDelete 
-                 deleteObject='категорию'
+                deleteObject='категорию'
                 close={setDeleteModal}
-                removeTask={()=>categoryItem.remove(categoryItem.id)}
+                removeById={categoryItem.remove}
+                idDeleteObject={categoryItem.id}
                 nameDeleteObject={categoryItem.name}  
                 />
        </MyModel>

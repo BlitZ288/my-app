@@ -1,18 +1,23 @@
 import React, { FC } from 'react'
 import MyForm from '../UI/form/MyForm';
 
- const TaskFormDelete:FC<IDeleteForm> = ({nameDeleteObject,removeTask, close}) => {
+ const TaskFormDelete:FC<IDeleteForm> = ({nameDeleteObject, removeById,idDeleteObject, close}) => {
+  
+  const move = ()=>{
+    removeById(idDeleteObject);
+  }
+  
   return (
     <MyForm
     valid={true}
     titleForm={'Удаление задачи'}
     titlePrimaryButton={'Да'}
     titleSecondaryButton={'Нет'}
-    move={removeTask}
+    move={move}
     close={close}
     >
         <div className='delete__message'>
-        Вы уверены, что хотите удалить {} {'"'+nameDeleteObject+'"'}?
+        Вы уверены, что хотите удалить  {'"'+nameDeleteObject+'"'}?
         </div>
     </MyForm>
   )

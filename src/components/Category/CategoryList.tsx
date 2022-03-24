@@ -10,7 +10,7 @@ import CategoryItem from './CategoryItem';
      {
          categories.map((category)=>
             <CategoryItem
-            key={category.id}
+              key={category.id}
               id={category.id}
               name={category.name}
               description={category.description}

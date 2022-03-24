@@ -7,6 +7,7 @@ import TemplateInput from './MyInput';
   
     const [isActive , setIsActive] = useState(false);   
     const [currentItem, setCurrentItem] = useState(defaultValue);
+
     const [classItemCurrent,setClassItemCurrent]= useState<Array<string>>(['select__current' ]) ;
 
     function dropList(){
@@ -23,10 +24,11 @@ import TemplateInput from './MyInput';
     }  
 
   return (
-    <div>
+    <div className='conteiner__select'>
     <TemplateInput labelInput={labelSelect} required={required}  >
         <div onClick={()=>dropList()} className={'select' + ' '+ (isActive ? 'is_active' :'')  } >
             <div className={'select__header'} >
+                
                 <div className={classItemCurrent.join(' ')}>{currentItem}</div>
                 <div className={'select__icon'}><img className={(isActive ? 'rotate_scale_up' :'')}  alt='arrow' src={arrowDown}></img></div>
             </div>

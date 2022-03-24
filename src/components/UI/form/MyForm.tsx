@@ -21,7 +21,7 @@ import '../../../styles/form.css';
           
           <MyButtonPrimary disabled={!propsForm.valid}>{propsForm.titlePrimaryButton}</MyButtonPrimary>
           
-          <MyButtonSecondary  onClick={()=>propsForm.close(false)}>{propsForm.titleSecondaryButton}</MyButtonSecondary>
+          <MyButtonSecondary type='button'  onClick={()=>propsForm.close(false)}>{propsForm.titleSecondaryButton}</MyButtonSecondary>
         </div>
 
     </form>

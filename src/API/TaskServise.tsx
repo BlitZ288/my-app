@@ -19,8 +19,6 @@ export default class TaskService {
             'Content-Type': 'application/json'
           }
          });
-      
-
      }
      static async UpdateTask(task:ITask)
      {

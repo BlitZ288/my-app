@@ -47,6 +47,7 @@ const NavBar = () => {
                         lastId={tasks[tasks.length-1].id}
                         titleForm='Создание задачи'
                         titlePrimaryButton='Создать'
+                        categoryname='s'
                         
                         ></TaskForm>
                         :

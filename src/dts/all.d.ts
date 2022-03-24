@@ -24,9 +24,10 @@ interface IEditeFrom{
 interface IDeleteForm{
     nameDeleteObject:string;
     deleteObject:string;
-    removeTask?:(idTask: number) => void;
-    removeCategory?:(idCategory: number) => void;    
+    idDeleteObject: number;
+    removeById:(idDeleteObject:number)=>void;     
     close:React.Dispatch<React.SetStateAction<boolean>>;
+    
 }
 
 
@@ -54,7 +55,8 @@ interface ITaskForm{
     task?:ITask;
     lastId?:number;
     titlePrimaryButton:string;
-    titleForm:string
+    titleForm:string;
+    categoryname:string;
 }
 interface ICategoryForm{
     workingOnCategory:(category:ICategory)=>void;

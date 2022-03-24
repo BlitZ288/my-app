@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import CategoryServise from './API/CategoryServise';
 import TaskService from './API/TaskServise';
@@ -6,6 +6,7 @@ import AppRouter from './components/AppRouter';
 import Loader from './components/UI/loader/Loader';
 import NavBar from './components/UI/NavBar/NavBar';
 import { ListContext } from './Context';
+import { TaskContext } from './Context/TaskContext';
 
 import './styles/App.css';
 
@@ -31,8 +32,20 @@ function App() {
       tempTasks.push(task);
     }
     tempTasks.push(updateTask);   
-    TaskService.UpdateTask(updateTask);
+    TaskService.UpdateTask(updateTask);  
     setTasks(tempTasks);
+  }
+  const updateCategory = (updateCategoty:ICategory)=>{
+    const tempCategories: Array<ICategory>=[];
+    for(let category of categories){
+      if(category.id===updateCategoty.id){
+        continue;
+      }
+      tempCategories.push(category);
+    }
+    tempCategories.push(updateCategoty);   
+    CategoryServise.UpdateCategory(updateCategoty);
+    setCategories(tempCategories);
   }
   const removeCategory = (idCategory :number)=>{
     setCategories(categories.filter(c=>c.id !== idCategory));
@@ -56,41 +69,30 @@ function App() {
       AddCategory(newCategory);  
     }
   
-    const updateCategory = (updateCategoty:ICategory)=>{
-      const tempCategories: Array<ICategory>=[];
-      for(let category of categories){
-        if(category.id===updateCategoty.id){
-          continue;
-        }
-        tempCategories.push(category);
-      }
-      tempCategories.push(updateCategoty);   
-      CategoryServise.UpdateCategory(updateCategoty);
-      setCategories(tempCategories);
-    }
+    
+
   async function GetTasks() {
     const tasks = await TaskService.GetAllTasks();
     setTasks(tasks)
   }
-  
-  useEffect(()=>{
-    setLoading(true);  
-    setIsLoadingTask(true); 
-      GetTasks().then(
-        ()=>setIsLoadingTask(false)
-      );  
-      setisLoadingCategories(true);
-      GetCategories().then(
-        ()=>setisLoadingCategories(false)
-      );
-    setLoading(false);
-  },[])
-  
   async function GetCategories() {
     const categories = await CategoryServise.GetAllCategores();
     setCategories(categories);    
   }
  
+  
+  useEffect(()=>{
+    setLoading(true);  
+    setIsLoadingTask(true); 
+    GetTasks().then(
+        ()=>setIsLoadingTask(false)
+      );  
+    setisLoadingCategories(true);
+    GetCategories().then(
+        ()=>setisLoadingCategories(false)
+      );
+    setLoading(false);
+  },[])
   
   return(
       (isLoadingCategories===false && isLoadingTasks ===false) 

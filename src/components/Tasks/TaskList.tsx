@@ -1,15 +1,30 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import TaskItem from './TaskItem';
 import '../../styles/ListToDo.css';
 import { ListContext } from '../../Context';
+import { TaskContext } from '../../Context/TaskContext';
+import NTaskRepositoryService from '../../API/NTaskRepositoryService';
 
 
 const TaskList :FC<{tasks:Array<ITask>}> = ({tasks}) => {
+
   const {removeTask, updateTask} = useContext(ListContext);
+  const con = useContext(TaskContext);
+  const taskService = new NTaskRepositoryService(con);
+  const ddd = useContext(ListContext);
+  function handler(){
+    const a = ddd.tasks;
+    console.log(ddd.tasks);
+    a[0].name="dasdasdsadsadsadsadsa";
+    console.log(ddd.tasks);    
+
+    
+  }
   return (
+ 
     <div>  
         
-      {tasks.map((task)=> 
+      {ddd.tasks.map((task)=> 
           <TaskItem         
            key={task.id} 
            id={task.id} 
@@ -20,6 +35,7 @@ const TaskList :FC<{tasks:Array<ITask>}> = ({tasks}) => {
            update={updateTask}
            />
       )}
+      <button onClick={()=>handler()}>Handler</button>
     </div>
 
   )

@@ -1,20 +1,27 @@
+import React, { useContext } from 'react';
+import { DataContext, IDataContext } from '../Context/DataContext';
 import {  ITaskContext, TaskContext } from '../Context/TaskContext';
 import TaskService from './TaskServise';
 import { IRepository } from './type/IRepository';
 
-export default class NTaskRepositoryService implements IRepository<ITask>  {
-     Context: ITaskContext;
+export default class NTaskRepositoryService  implements IRepository<ITask>  {
     
-     constructor(context:ITaskContext){
-        this.Context = context;
-     }
+     Context: IDataContext;
+   
+
+    constructor(context:IDataContext){
+       this.Context =context;
+    }
 
     GetAll():ITask[]
-    {
-        
+    {  
+        console.log(this.Context);    
+       const {tasks, setTasks} = this.Context;
        TaskService.GetAllTasks().then(
-           (reuslt) =>{
-            return reuslt;
+           (result) =>{
+            setTasks([...tasks, ...result]);
+            return result;
+           
            });
            return [] 
     };
@@ -23,9 +30,17 @@ export default class NTaskRepositoryService implements IRepository<ITask>  {
         TaskService.RemoveTask(idTask);
     };
     Add(task:ITask){
-        TaskService.AddTask(task);
+        const {tasks, setTasks} = this.Context;
+        console.log(tasks);
+        setTasks([...tasks, task]);
+       // TaskService.AddTask(task);
     };
     Update (updateTask: ITask) {
-        TaskService.UpdateTask(updateTask);
+     
+        const {tasks, setTasks} = this.Context;
+        const tempTasks = tasks.filter(t=>t.id !== updateTask.id)
+        tempTasks.push(updateTask);
+        setTasks(tempTasks);  
+        TaskService.UpdateTask(updateTask); 
     };    
 }

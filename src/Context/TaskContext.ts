@@ -11,11 +11,6 @@ export interface ITaskContext {
 }
 
 
-interface DataContext{
-    tasks:ITask[];
-    categories:ICategory[];
-}
-
 
 
 export const TaskContext = createContext<ITaskContext>({} as ITaskContext);

@@ -1,30 +1,37 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import TaskItem from './TaskItem';
 import '../../styles/ListToDo.css';
 import { ListContext } from '../../Context';
-import { TaskContext } from '../../Context/TaskContext';
-import NTaskRepositoryService from '../../API/NTaskRepositoryService';
+import { ServiceContext } from '../../Context/ServiceContext';
+import { DataContext } from '../../Context/DataContext';
 
 
-const TaskList :FC<{tasks:Array<ITask>}> = ({tasks}) => {
+const TaskList :FC<{tasksd:Array<ITask>}> = ({tasksd}) => {
 
   const {removeTask, updateTask} = useContext(ListContext);
-  const con = useContext(TaskContext);
-  const taskService = new NTaskRepositoryService(con);
-  const ddd = useContext(ListContext);
+  const {TaskService} = useContext(ServiceContext);
+  const {tasks} = useContext(DataContext);
+  useEffect(()=>{
+    console.log(tasks);
+    TaskService.GetAll();
+  },[])
   function handler(){
-    const a = ddd.tasks;
-    console.log(ddd.tasks);
-    a[0].name="dasdasdsadsadsadsadsa";
-    console.log(ddd.tasks);    
 
-    
+    const testTask: ITask = {
+      id: 77,
+      name: 'testTask',
+      description: 'descriptionTask ',
+      categoryId: 0,
+      remove: () => { },
+      update: ()=> { },
+    }
+    TaskService.Add(testTask);
   }
   return (
  
     <div>  
         
-      {ddd.tasks.map((task)=> 
+      {tasks.map((task)=> 
           <TaskItem         
            key={task.id} 
            id={task.id} 

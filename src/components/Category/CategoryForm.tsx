@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import  { FC } from 'react'
 import { useInput } from '../../Hooks/useInput';
 import MyForm from '../UI/form/MyForm';
 import MyTextArena from '../UI/input/MyTextArena';
@@ -60,8 +60,7 @@ const CategoryForm:FC<ICategoryForm> = ({workingOnCategory, category, close, las
           onChange = {e => descriptionCategory.onChange(e)} 
           value={descriptionCategory.value}
           placeholder='Описание'          
-          />
-               
+          />               
         </div>
        </MyForm> 
   )

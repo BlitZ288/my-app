@@ -18,23 +18,18 @@ export const useValidation=(value:string, validations: { [x: string]: any; } )=>
                     {
                       const temp  = new Map(errorMap);                     
                       temp.set(validation,`Поле должно быть меньше ${validations[validation]}`);                      
-                      setTesMap(temp);                     
-
-                    }
-                    
+                      setTesMap(temp); 
+                    }                    
                    } else{
                        setMaxLenghtError(false);
                        const temp  = new Map(errorMap);                     
                        if(errorMap?.has(validation)){
                         temp.delete(validation)
                         setTesMap(temp);
-
-                       }
-                                     
+                       }                                    
                    } 
                     break;
-                case 'isEmpty':
-                    
+                case 'isEmpty':                    
                     if(value){                     
                       setEmpty(false);
                       const temp  = new Map(errorMap);

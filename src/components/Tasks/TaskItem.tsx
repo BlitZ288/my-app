@@ -1,21 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import  {  useEffect, useState } from 'react';
 import MyButtonImge from '../UI/button/MyButtonImge';
 import editIamge from '../img/edit.svg';
 import deleteImage from '../img/delete.svg';
 import iconFolder from '../img/folder.svg';
 import MyModel from '../UI/Model/MyModel';
 import TaskFormDelete from './TaskFormDelete';
-import { ListContext } from '../../Context';
 import TaskForm from './TaskForm';
-import { TaskContext } from '../../Context/TaskContext';
+import { useDataContext } from '../../Hooks/useDataContext';
 
 const TaskItem = (TaskItem:ITask) => {  
     
     const [deleteModal, setDeleteModal] = useState(false); 
     const [editModal, setEditModal] = useState(false); 
-    const {categories} = useContext(ListContext);
+    const {categories} = useDataContext();
     const [taskItem , setTaskItem] = useState(TaskItem);    
-    const {TaskService, tasks} = useContext(TaskContext);
+
   function serchCategoryNamseById(idCategory?:number) :string
   { 
     let indexSerch = categories.findIndex(category=> (category.id === idCategory));  
@@ -23,6 +22,7 @@ const TaskItem = (TaskItem:ITask) => {
   }
  
   useEffect(()=>{ 
+      
       setTaskItem({...TaskItem , categoryName:serchCategoryNamseById(TaskItem.categoryId)});
 
   },[TaskItem]);
@@ -72,7 +72,6 @@ const TaskItem = (TaskItem:ITask) => {
                
             </MyModel>
             <MyModel visible={editModal} setVisable={setEditModal} >
-
               <TaskForm
               workingOnTask={TaskItem.update}
               close={setEditModal}
@@ -80,7 +79,7 @@ const TaskItem = (TaskItem:ITask) => {
               task={taskItem}   
               titlePrimaryButton='Сохранить'
               titleForm='Редактирование задачи'           
-              categoryname={taskItem.categoryName ?? serchCategoryNamseById(taskItem.categoryId) }
+              categoryName={taskItem.categoryName ?? serchCategoryNamseById(taskItem.categoryId) }
               />               
                
             </MyModel>

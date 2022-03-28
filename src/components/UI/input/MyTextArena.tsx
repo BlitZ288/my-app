@@ -10,10 +10,10 @@ const MyTextArena = ({labelInput, ...props}:IMyInput) => {
      </TemplateInput>
      <div className="conteiner__errors">
             {
-                props.errors?.map((value, index)=>{
+              props.errors?.map((value, index)=>{
                    
-                    return(<span key={index} className={'error__message'}>{value}</span>)
-                })
+                return(<span key={index} className={'error__message'}>{value}</span>)
+              })
             }
         </div>
      </div>

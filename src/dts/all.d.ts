@@ -53,10 +53,9 @@ interface ITaskForm{
     workingOnTask:(task:ITask)=>void;
     close:React.Dispatch<React.SetStateAction<boolean>>; 
     task?:ITask;
-    lastId?:number;
     titlePrimaryButton:string;
     titleForm:string;
-    categoryname:string;
+    categoryName:string;
 }
 interface ICategoryForm{
     workingOnCategory:(category:ICategory)=>void;

@@ -6,7 +6,7 @@ import MyForm from '../UI/form/MyForm';
   const move = ()=>{
     removeById(idDeleteObject);
   }
-  
+    
   return (
     <MyForm
     valid={true}

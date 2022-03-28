@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default class CategoryServise 
+export default class CategoryServiseApi 
 {
 
     static async GetAllCategores():Promise<ICategory[]>

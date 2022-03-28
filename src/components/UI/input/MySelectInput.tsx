@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import  "./MyInput.css"
 import arrowDown from '../../img/drop-down-arrow.svg';
 import TemplateInput from './MyInput';
@@ -35,14 +35,15 @@ import TemplateInput from './MyInput';
 
             <div className={'select__body'}>               
                {
-                    optionsCategories?.map((option)=>
+                optionsCategories?.map((option)=>
                     <div 
                     onClick={(event)=>handlerClickItem(event.currentTarget.getAttribute('data-value'), event.currentTarget.innerText)}
                     key={option.id} 
                     className={'select__item'} 
                     data-value={option.id}>
                     {option.name}
-                    </div>)  
+                    </div>
+                )  
                }
             </div>
         </div>  

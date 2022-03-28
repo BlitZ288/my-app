@@ -14,25 +14,22 @@ import CategoryForm from './CategoryForm';
         <div className='itemTodo'>
             <div className='infoItem'>
                 <div className='headerItem'>
-                    <label className='name'>{categoryItem.name}</label>
-                    
+                    <label className='name'>{categoryItem.name}</label>                    
                 </div>
                 <div className='description'>
                 {categoryItem.description}
                 </div>
             </div>
             <div className='containerButton'>
-            <MyButtonImge onClick={()=>setEditModal(true)}>
+                <MyButtonImge onClick={()=>setEditModal(true)}>
                     <img src={editIamge} alt='edit'></img>
                 </MyButtonImge>
                 <MyButtonImge onClick={()=>setDeleteModal(true)}>
                     <img src={deleteImage} alt='edit'></img>
-                </MyButtonImge>                            
-                
-            </div>
-            
-        
+                </MyButtonImge>  
+            </div>        
         </div>
+
         <MyModel visible={deleteModal} setVisable={setDeleteModal} >
                 <TaskFormDelete 
                 deleteObject='категорию'
@@ -48,12 +45,10 @@ import CategoryForm from './CategoryForm';
               close={setEditModal}
               category={categoryItem}   
               titlePrimaryButton='Сохранить'
-              titleForm='Редактирование категории'           
+              titleForm='Редактирование категории'          
               
               />
-               
-               
-            </MyModel>
+        </MyModel>
 </div>
   )
 }

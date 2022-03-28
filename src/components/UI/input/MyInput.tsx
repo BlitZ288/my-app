@@ -1,4 +1,3 @@
-import React from 'react'
 import  "./MyInput.css"
 
 const TemplateInput  = ({children,labelInput,required, className}:IMyInput) => {

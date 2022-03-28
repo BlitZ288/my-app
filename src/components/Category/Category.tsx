@@ -1,17 +1,15 @@
-import React, { useContext } from 'react'
-import { ListContext } from '../../Context';
+import DataContextProvider from '../../Context/DataContextProvider';
+import ServiceContextProvider from '../../Context/ServiceContextProvider';
 import CategoryList from './CategoryList';
 
  const Category = () => {
 
-  const {categories } = useContext(ListContext)
   return (
-    <div  className="App">        
-      {
-       <CategoryList categories={categories}></CategoryList> 
-      }
-
-    </div>
+      <DataContextProvider>
+        <ServiceContextProvider>
+        <CategoryList ></CategoryList> 
+        </ServiceContextProvider>
+       </DataContextProvider>
   );
 }
 export default Category

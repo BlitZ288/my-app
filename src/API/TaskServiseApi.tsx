@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default class TaskService {
+export default class TaskServiceApi {
 
      static async GetAllTasks():Promise<ITask[]> 
      { 

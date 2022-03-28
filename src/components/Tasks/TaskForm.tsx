@@ -1,19 +1,20 @@
-import React, { FC, useContext, useState } from 'react'
-import { ListContext } from '../../Context';
+import  { FC,  useState } from 'react'
+import { useDataContext } from '../../Hooks/useDataContext';
 import { useInput } from '../../Hooks/useInput';
 import MyForm from '../UI/form/MyForm';
 import MySelectInput from '../UI/input/MySelectInput';
 import MyTextArena from '../UI/input/MyTextArena';
 import MyTextInput from '../UI/input/MyTextInput';
 
- const TaskForm:FC<ITaskForm> = ({workingOnTask, close,task, lastId, categoryname, titlePrimaryButton, titleForm} ) => {
+ const TaskForm:FC<ITaskForm> = ({workingOnTask, close,task, categoryName, titlePrimaryButton, titleForm} ) => {
     
-    const {categories} = useContext(ListContext);
+    const {categories} = useDataContext();
     const nameTask = useInput(task?.name??  '', {isEmpty:true, maxLenght:254 });
     const descriptionTask = useInput(task?.description?? '', { maxLenght:1535 });   
     const [categoryIdTask,setCategoryId] = useState(0);
     const currentTask = task?? {} as ITask;     
-    const defualtValue = useState(categoryname);
+    const defualtValue = useState(categoryName);
+    
     const move = ()=>{
         const tempTask:ITask = currentTask ? {
             ...currentTask,
@@ -26,7 +27,7 @@ import MyTextInput from '../UI/input/MyTextInput';
             description: descriptionTask.value,
             remove: () => { },
             update: () => { },
-            id: lastId?? 0,
+            id: 0,
             categoryId: categoryIdTask
         }
         workingOnTask(tempTask);

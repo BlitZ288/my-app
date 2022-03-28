@@ -17,11 +17,10 @@ import '../../../styles/form.css';
         <div className='content__form'>
           {propsForm.children}
         </div>
-        <div className='conteiner__button'>
-          
-          <MyButtonPrimary disabled={!propsForm.valid}>{propsForm.titlePrimaryButton}</MyButtonPrimary>
-          
+        <div className='conteiner__button'>          
+          <MyButtonPrimary disabled={!propsForm.valid}>{propsForm.titlePrimaryButton}</MyButtonPrimary>          
           <MyButtonSecondary type='button'  onClick={()=>propsForm.close(false)}>{propsForm.titleSecondaryButton}</MyButtonSecondary>
+
         </div>
 
     </form>

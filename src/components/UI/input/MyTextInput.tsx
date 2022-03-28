@@ -2,7 +2,7 @@ import TemplateInput from "./MyInput";
 import   "./MyInput.css"
 const MyTextInput = ({labelInput, ...props}:IMyInput) =>{
     return(
-        <div style={{display:'flex', flexDirection:'column', marginBottom: '20px'}}>
+    <div style={{display:'flex', flexDirection:'column', marginBottom: '20px'}}>
         <TemplateInput className={props.className } labelInput={labelInput} required={props.required} >
             <input {...props} className='myInput'  />
         </TemplateInput>
@@ -14,7 +14,7 @@ const MyTextInput = ({labelInput, ...props}:IMyInput) =>{
                 })
             }
         </div>
-        </div>
+    </div>
     )
 }
 export default MyTextInput;
